@@ -6,20 +6,6 @@ public class Tassello_str extends Tassello {
     info = informazione;    
   }
   
-  public Tassello_str(String informazione) {
-    String newid = null;
-    String idn = null;
-    String ids = null;
-    String ide = null;
-    String ido = null;
-    Tassello_str(newid, idn, ids, ide, ido, informazione);
-  }
-  
-  public Tassello_str() {
-    String informazione = null;
-    Tassello_str(informazione);
-  }
-  
   public String getInfo() {
     return info;
   }

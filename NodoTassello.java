@@ -9,7 +9,8 @@ public class NodoTassello {
   }
   
   public NodoTassello() {
-    NodoTassello(null);
+    Tassello t = null;
+    NodoTassello(t);
   }
   
   public Tassello getData() {
