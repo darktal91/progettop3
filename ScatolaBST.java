@@ -9,12 +9,17 @@ public class ScatolaBST implements Scatola {
     pezzi = 0;
   }
   
+  public int getPezzi() {
+    return pezzi;
+  }
+  
   //funzione privata di utilità che implementa l'inserimento di un nodo in modo ricorsivo
   private void inserisciRicorsiva(NodoTassello ref, NodoTassello nuovo) {
     if(nuovo.getData().maggioreDi(ref.getData())) { 
       // il nuovo nodo è maggiore del nodo attualmente considerato, quindi va inserito nel sottoalbero destro
       if(ref.getRightChild() == null) { // non esiste sottoalbero destro, il nuovo nodo va inserito come foglia destra
 	ref.setRightChild(nuovo);
+	pezzi++;
       }
       else { //esiste un sottoalbero destro, richiamo l'inserimento ricorsivo
 	inserisciRicorsiva(ref.getRightChild(), nuovo);
@@ -24,6 +29,7 @@ public class ScatolaBST implements Scatola {
       //il nuovo nodo è minore del nodo attualmente considerato, quindi va inserito nel sottoalbero sinistro
       if(ref.getLeftChild() == null) { //non esiste sottoalbero sinistro, il nuovo nodo va inserito come foglia sinistra
 	ref.setLeftChild(nuovo);
+	pezzi++;
       }
       else { //esiste un sottoalbero sinistro, richiamo l'inserimento ricorsivo
 	inserisciRicorsiva(ref.getLeftChild(), nuovo);
@@ -36,6 +42,7 @@ public class ScatolaBST implements Scatola {
     
     if(root == null) {
       root = nuovo;
+      pezzi++;
     }
     else {
       inserisciRicorsiva(root, nuovo);
