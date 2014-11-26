@@ -52,7 +52,7 @@ public abstract class Tassello {
     id_ovest = ido;
   }
   
-  public bool maggioreDi(Tassello t) {
+  public boolean maggioreDi(Tassello t) {
     int r = this.id.compareTo(t.getId());
     if(r > 0) {
       return true;

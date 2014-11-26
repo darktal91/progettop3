@@ -18,7 +18,7 @@ public class SolverPR implements Solver {
   public SolverPR(Scatola s) {
     scatola = s;
     righe = 0;
-    Tassello = null;
+    angoloNO = null;
   }
   
   public void leggi(String input) {
@@ -61,7 +61,7 @@ public class SolverPR implements Solver {
   }
   
   public void risolvi() {
-    colonne = scatola.getPezzi() / righe;
+    colonne = scatola.getNumeroPezzi() / righe;
     soluzione = new Tassello[righe][colonne];
     costruisciBordoOvest();
     for(int i=0; i<soluzione.length; i++) {
@@ -72,7 +72,7 @@ public class SolverPR implements Solver {
   public void scrivi(String output) {
     Path outputPath = Paths.get(output);
     
-    try (BufferedWriter writer = new newBufferedWriter(outputPath, charset)) {
+    try (BufferedWriter writer = Files.newBufferedWriter(outputPath, charset)) {
       StringBuilder builder = new StringBuilder();
       for(int i=0; i<soluzione.length; i++) {
 	for(int j=0; j<soluzione[i].length; j++) {
@@ -80,22 +80,25 @@ public class SolverPR implements Solver {
 	}
       }
       
-      builder.newLine();
-      builder.newLine();
+      builder.append("\n");
+      builder.append("\n");
       
       for(int i=0; i<soluzione.length; i++) {
 	for(int j=0; j<soluzione[i].length; j++) {
 	  builder.append(soluzione[i][j].getInfo());
 	  builder.append("\t");
 	}
-	builder.newLine();
+	builder.append("\n");
       }
       
-      builder.newLine();
+      builder.append("\n");
       
       builder.append(righe + " " + colonne);
       
-      writer.write(builder);
+      writer.write(builder.toString());
+    }
+    catch(IOException e) {
+      System.err.println(e);
     }
   }
 }

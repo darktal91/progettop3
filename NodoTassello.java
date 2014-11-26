@@ -9,7 +9,7 @@ public class NodoTassello {
   }
   
   public NodoTassello() {
-    NodoTassello(d);
+    NodoTassello(null);
   }
   
   public Tassello getData() {
@@ -36,7 +36,7 @@ public class NodoTassello {
     right = n;
   }
   
-  public bool isLeaf() {
+  public boolean isLeaf() {
     return (left == null && right == null);
   }
 }

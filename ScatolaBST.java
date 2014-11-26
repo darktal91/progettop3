@@ -7,7 +7,7 @@ public class ScatolaBST implements Scatola {
     pezzi = 0;
   }
   
-  public int getPezzi() {
+  public int getNumeroPezzi() {
     return pezzi;
   }
   
@@ -52,11 +52,11 @@ public class ScatolaBST implements Scatola {
     boolean found = false;
     
     while(!found) {
-      if(id.equals(p.getInfo().getId())) {
+      if(id.equals(p.getData().getId())) {
 	found = true;
       }
       else {
-	if(id.compareTo(p.getInfo().getId()) > 0) { //l'id che sto cercando è più grando di quello del nodo analizzato, proseguo nel sottoalbero destro
+	if(id.compareTo(p.getData().getId()) > 0) { //l'id che sto cercando è più grando di quello del nodo analizzato, proseguo nel sottoalbero destro
 	  p = p.getRightChild();
 	}
 	else { //l'id che sto cercando è più piccolo di quello del nodo analizzato, proseguo nel sottoalbero sinistro
@@ -66,11 +66,11 @@ public class ScatolaBST implements Scatola {
     }
     
     if(found) {
-      return p.getInfo();
+      return p.getData();
     }
-//     else {
-//       ERRORE!!! ECCEZIONE! MERDA!
-//     }
+    else {
+      return null;
+    }
   }
   
 }
