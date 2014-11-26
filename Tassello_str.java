@@ -9,7 +9,7 @@ public class Tassello_str extends Tassello {
   }
   
   public Tassello_str(String informazione) {
-    Tassello_str(null, null, null, null, null, informazione)
+    Tassello_str(null, null, null, null, null, informazione);
   }
   
   public Tassello_str() {

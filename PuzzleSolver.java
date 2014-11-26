@@ -1,5 +1,7 @@
 package Puzzle;
 
+import Puzzle.*;
+
 public class PuzzleSolver {
   Solver solver;
   
@@ -13,9 +15,9 @@ public class PuzzleSolver {
     
     
     Scatola scatola = new ScatolaBST();
-    Solver solver = new SolverPR(scatola);
+    Solver sol = new SolverPR(scatola);
     
-    PuzzleSolver risolutore = new PuzzleSolver(solver);
+    PuzzleSolver risolutore = new PuzzleSolver(sol);
     risolutore.esegui(input, output);
   }
   
