@@ -1,5 +1,3 @@
-package Puzzle;
-
 public abstract class Tassello {
   private String id;
   private String id_nord, id_sud, id_est, id_ovest;

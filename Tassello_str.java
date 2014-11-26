@@ -1,5 +1,3 @@
-package Puzzle;
-
 public class Tassello_str extends Tassello {
   private String info;
   

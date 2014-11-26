@@ -1,5 +1,3 @@
-package Puzzle;
-
 public class NodoTassello {
   private Tassello data;
   private NodoTassello left, right;

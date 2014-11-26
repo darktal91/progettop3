@@ -1,5 +1,3 @@
-package Puzzle;
-
 public class ScatolaBST implements Scatola {
   private NodoTassello root;
   private int pezzi;

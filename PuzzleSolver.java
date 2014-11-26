@@ -1,7 +1,3 @@
-package Puzzle;
-
-import Puzzle.*;
-
 public class PuzzleSolver {
   Solver solver;
   
