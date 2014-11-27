@@ -1,3 +1,5 @@
+import Puzzle.*;
+
 public class PuzzleSolver {
   Solver solver;
   
