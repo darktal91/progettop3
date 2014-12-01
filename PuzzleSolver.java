@@ -1,7 +1,7 @@
 import Puzzle.*;
 
 public class PuzzleSolver {
-  Solver solver;
+  private Solver solver;
   
   PuzzleSolver(Solver sol) {
     solver = sol;
@@ -19,7 +19,7 @@ public class PuzzleSolver {
     risolutore.esegui(input, output);
   }
   
-  private void esegui(String input, String output) {
+  public void esegui(String input, String output) {
     solver.leggi(input);
     solver.risolvi();
     solver.scrivi(output);
