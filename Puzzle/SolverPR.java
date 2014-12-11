@@ -33,7 +33,7 @@ public class SolverPR implements Solver {
       while ((line = reader.readLine()) != null) {
 	temp = line.split("\t");
 	
-	t = new Tassello_str(temp[0], temp[2], temp[4], temp[3], temp[5], temp[1]);
+	t = new Tassello_str(temp[0].trim(), temp[2].trim(), temp[4].trim(), temp[3].trim(), temp[5].trim(), temp[1]);
 	if(temp[5].equals("VUOTO")) {
 	  righe++;
 	  if(temp[2].equals("VUOTO")) {
@@ -63,11 +63,21 @@ public class SolverPR implements Solver {
   }
   
   public void risolvi() {
-    colonne = scatola.getNumeroPezzi() / righe;
+    boolean check = false;
+    if(righe != 0 && scatola.getNumeroPezzi() != 0 && scatola.getNumeroPezzi()%righe == 0) { //controlla che i dati nel file siano presenti e consistenti
+      colonne = scatola.getNumeroPezzi() / righe;
+      check = true;
+    }
+    else {
+      colonne = 0;
+    }
     soluzione = new Tassello[righe][colonne];
-    costruisciBordoOvest();
-    for(int i=0; i<soluzione.length; i++) {
-      costruisciRiga(i);
+    
+    if(check) { //costruisce la soluzione se e solo se i dati sono presenti e consistenti
+      costruisciBordoOvest();
+      for(int i=0; i<soluzione.length; i++) {
+	costruisciRiga(i);
+      }
     }
   }
   
@@ -76,6 +86,7 @@ public class SolverPR implements Solver {
     
     try (BufferedWriter writer = Files.newBufferedWriter(outputPath, charset)) {
       StringBuilder builder = new StringBuilder();
+      
       for(int i=0; i<soluzione.length; i++) {
 	for(int j=0; j<soluzione[i].length; j++) {
 	  builder.append(soluzione[i][j].getInfo());
