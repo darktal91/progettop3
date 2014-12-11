@@ -8,15 +8,22 @@ public class PuzzleSolver {
   }
   
   public static void main(String[] args) {
-    String input = args[0];
-    String output = args[1];
-    
-    
-    Scatola scatola = new ScatolaBST();
-    Solver sol = new SolverPR(scatola);
-    
-    PuzzleSolver risolutore = new PuzzleSolver(sol);
-    risolutore.esegui(input, output);
+    // controllo sui parametri, se sono meno di 2 (input e output) il programma termina con messaggio di errore
+    if(args.length < 2) {
+      System.err.println("Errore. Numero parametri errato.");
+      System.err.println("Corretta invocazione: java PuzzleSolver <file_input> <file_output>");
+    }
+    else {
+      String input = args[0];
+      String output = args[1];
+      
+      
+      Scatola scatola = new ScatolaBST();
+      Solver sol = new SolverPR(scatola);
+      
+      PuzzleSolver risolutore = new PuzzleSolver(sol);
+      risolutore.esegui(input, output);
+    }
   }
   
   public void esegui(String input, String output) {
