@@ -27,9 +27,14 @@ public class PuzzleSolver {
   }
   
   public void esegui(String input, String output) {
-    solver.leggi(input);
-    solver.risolvi();
-    solver.scrivi(output);
+    try {
+      solver.leggi(input);
+      solver.risolvi();
+      solver.scrivi(output);
+    }
+    catch(InputInconsistente ic) {
+      System.err.println(ic);
+    }
   }
   
   public Solver getSolver() {

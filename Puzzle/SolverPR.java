@@ -23,7 +23,7 @@ public class SolverPR implements Solver {
     angoloNO = null;
   }
   
-  public void leggi(String input) {
+  public void leggi(String input) throws InputInconsistente {
     Path inputPath = Paths.get(input);
    
     try (BufferedReader reader = Files.newBufferedReader(inputPath, charset)) {
@@ -32,6 +32,10 @@ public class SolverPR implements Solver {
       Tassello_str t = null;
       while ((line = reader.readLine()) != null) {
 	temp = line.split("\t");
+	
+	if(temp.length < 6) {
+	  throw new InputInconsistente();
+	}
 	
 	t = new Tassello_str(temp[0].trim(), temp[2].trim(), temp[4].trim(), temp[3].trim(), temp[5].trim(), temp[1]);
 	if(temp[5].equals("VUOTO")) {
