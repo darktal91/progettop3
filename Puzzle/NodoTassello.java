@@ -1,6 +1,6 @@
 package Puzzle;
 
-public class NodoTassello {
+class NodoTassello {
   private Tassello data;
   private NodoTassello left, right;
   
