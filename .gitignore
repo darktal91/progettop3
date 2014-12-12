@@ -1,0 +1,8 @@
+# non voglio i file di input/output
+*.txt
+
+# non voglio i file compilati, ignoro i .class
+*.class
+
+# voglio ignorare la classe che genera l'input per i test, PuzzleGenerator
+PuzzleGenerator.java
