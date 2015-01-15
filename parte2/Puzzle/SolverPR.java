@@ -29,7 +29,6 @@ public class SolverPR implements Solver {
     public void run() {
       costruisciRiga(indice);
       c.decrement();
-      notifyAll();
     }
   }
   
@@ -46,6 +45,7 @@ public class SolverPR implements Solver {
     
     public synchronized void decrement() {
       count--;
+      notify();
     }
     
     public synchronized int getCount() {
@@ -123,12 +123,15 @@ public class SolverPR implements Solver {
 	new Thread(new ThreadSolver(i, c)).start();
       }
       
-      while(c.getCount() != 0) {
-	try {
-	  wait();
-	}
-	catch (InterruptedException e) {
-	  System.err.println(e);
+      
+      synchronized(c) {
+	while(c.getCount() != 0) {
+	  try {
+	    c.wait();
+	  }
+	  catch (InterruptedException e) {
+	    System.err.println(e);
+	  }
 	}
       }
     }
