@@ -19,13 +19,37 @@ public class SolverPR implements Solver {
   
   private class ThreadSolver implements Runnable {
     private int indice;
+    private Counter c;
     
-    ThreadSolver(int i) {
+    ThreadSolver(int i, Counter x) {
       indice = i;
+      c = x;
     }
     
     public void run() {
-      costruisciRiga(i);
+      costruisciRiga(indice);
+      c.decrement();
+      notifyAll();
+    }
+  }
+  
+  private class Counter {
+    private int count;
+    
+    Counter(int c) {
+      count = c;
+    }
+    
+    public synchronized void increment() {
+      count++;
+    }
+    
+    public synchronized void decrement() {
+      count--;
+    }
+    
+    public synchronized int getCount() {
+      return count;
     }
   }
   
@@ -91,11 +115,22 @@ public class SolverPR implements Solver {
     
     if(check) { //costruisce la soluzione se e solo se i dati sono presenti e consistenti
       costruisciBordoOvest();
+      
+      Counter c = new Counter(0);
+      
       for(int i=0; i<soluzione.length; i++) {
-	new Thread(new ThreadSolver(i)).start();
+	c.increment();
+	new Thread(new ThreadSolver(i, c)).start();
       }
       
-      
+      while(c.getCount() != 0) {
+	try {
+	  wait();
+	}
+	catch (InterruptedException e) {
+	  System.err.println(e);
+	}
+      }
     }
   }
   
