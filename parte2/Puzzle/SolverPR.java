@@ -17,6 +17,18 @@ public class SolverPR implements Solver {
   private Tassello angoloNO;
   private Tassello[][] soluzione;
   
+  private class ThreadSolver implements Runnable {
+    private int indice;
+    
+    ThreadSolver(int i) {
+      indice = i;
+    }
+    
+    public void run() {
+      costruisciRiga(i);
+    }
+  }
+  
   public SolverPR(Scatola s) {
     scatola = s;
     righe = 0;
@@ -80,8 +92,10 @@ public class SolverPR implements Solver {
     if(check) { //costruisce la soluzione se e solo se i dati sono presenti e consistenti
       costruisciBordoOvest();
       for(int i=0; i<soluzione.length; i++) {
-	costruisciRiga(i);
+	new Thread(new ThreadSolver(i)).start();
       }
+      
+      
     }
   }
   
