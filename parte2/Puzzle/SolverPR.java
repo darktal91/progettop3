@@ -53,14 +53,14 @@ public class SolverPR implements Solver {
  
   }
   
-  private void costruisciBordoOvest() {
+  protected void costruisciBordoOvest() {
     soluzione[0][0] = angoloNO;
     for(int i=1; i<soluzione.length; i++) {
       soluzione[i][0] = scatola.cerca(soluzione[i-1][0].getIdSud());
     }
   }
   
-  private void costruisciRiga(int r) {
+  protected void costruisciRiga(int r) {
     for(int i=1; i<soluzione[r].length; i++) {
       soluzione[r][i] = scatola.cerca(soluzione[r][i-1].getIdEst());
     }
