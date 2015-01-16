@@ -24,6 +24,7 @@ public class SolverPR implements Solver {
     ThreadSolver(int i, Counter x) {
       indice = i;
       c = x;
+      c.increment();
     }
     
     public void run() {
@@ -89,14 +90,14 @@ public class SolverPR implements Solver {
  
   }
   
-  protected void costruisciBordoOvest() {
+  private void costruisciBordoOvest() {
     soluzione[0][0] = angoloNO;
     for(int i=1; i<soluzione.length; i++) {
       soluzione[i][0] = scatola.cerca(soluzione[i-1][0].getIdSud());
     }
   }
   
-  protected void costruisciRiga(int r) {
+  private void costruisciRiga(int r) {
     for(int i=1; i<soluzione[r].length; i++) {
       soluzione[r][i] = scatola.cerca(soluzione[r][i-1].getIdEst());
     }
@@ -119,7 +120,6 @@ public class SolverPR implements Solver {
       Counter c = new Counter(0);
       
       for(int i=0; i<soluzione.length; i++) {
-	c.increment();
 	new Thread(new ThreadSolver(i, c)).start();
       }
       
