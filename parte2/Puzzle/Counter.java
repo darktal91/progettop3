@@ -1,3 +1,5 @@
+package Puzzle;
+
 public class Counter {
     private int count;
     
