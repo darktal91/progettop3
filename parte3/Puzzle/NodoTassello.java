@@ -1,6 +1,6 @@
 package Puzzle;
 
-class NodoTassello {
+class NodoTassello implements Serializable {
   private Tassello data;
   private NodoTassello left, right;
   

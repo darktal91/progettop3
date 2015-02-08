@@ -3,14 +3,15 @@ package Puzzle;
 public class ScatolaBST implements Scatola {
   private NodoTassello root;
   private int pezzi;
+  private int righe;
+  private NodoTassello angoloNO;
   
   public ScatolaBST() {
     root = null;
     pezzi = 0;
-  }
-  
-  public int getNumeroPezzi() {
-    return pezzi;
+    righe = 0;
+
+    angoloNO = null
   }
   
   //funzione privata di utilità che implementa l'inserimento di un nodo in modo ricorsivo
@@ -39,6 +40,12 @@ public class ScatolaBST implements Scatola {
   
   public void inserisci(Tassello t) {
     NodoTassello nuovo = new NodoTassello(t);
+    
+    if(t.getIdOvest().equals("VUOTO")) {
+      righe++;
+      if(t.getIdNord().equals("VUOTO"))
+	angoloNO = nuovo;
+    }
     
     if(root == null) {
       root = nuovo;
@@ -75,4 +82,22 @@ public class ScatolaBST implements Scatola {
     }
   }
   
+  public int getNumeroPezzi() {
+    return pezzi;
+  }
+  
+  public int getRighe() {
+    return righe;
+  }
+  
+  public int getColonne() {
+    if(righe != 0)
+      return pezzi/righe;
+    else
+      return 0;
+  }
+  
+  public Tassello getAngoloNO() {
+    return angoloNO.getData();
+  }  
 }
