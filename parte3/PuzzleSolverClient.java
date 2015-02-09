@@ -27,6 +27,9 @@ public class PuzzleSolverClient {
       catch(InputInconsistente ic) {
 	System.out.println(ic);
       }
+      catch(RemoteException r) {
+	System.out.println("Connessione al server persa.");
+      }
       catch(Exception exc) {
 	exc.printStackTrace();
       }

@@ -42,7 +42,7 @@ public class SolverPR implements Solver {
       angoloNO = ((ScatolaBST) scatola).getAngoloNO();
       righe = scatola.getRighe();
       colonne = scatola.getColonne();
-     
+      
       if(righe != 0 && scatola.getNumeroPezzi() != 0 && scatola.getColonne() != 0) { //controlla che i dati nel file siano presenti e consistenti
 	check = true;
       }
