@@ -10,7 +10,7 @@ public class PuzzleSolverServer {
       System.err.println("Corretta invocazione: java PuzzleSolverServer nome_del_server");
     }
     else {
-      Solver sol = new SolverPR();
+      Solver sol = new SolverRem();
       String rmiObjName = "rmi://" + HOST + "/" + args[0];
       Naming.rebind(rmiObjName, sol);
       System.out.println("Server pronto");

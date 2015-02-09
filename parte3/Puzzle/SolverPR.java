@@ -1,9 +1,6 @@
 package Puzzle;
 
-import java.rmi.*;
-import java.rmi.server.*;
-
-public class SolverPR extends UnicastRemoteObject implements Solver {
+public class SolverPR implements Solver {
   private Scatola scatola = null;
   private Tassello[][] soluzione = null;
   private Tassello angoloNO = null;
@@ -26,8 +23,6 @@ public class SolverPR extends UnicastRemoteObject implements Solver {
     }
   }
   
-  public SolverPR() throws RemoteException {}
-  
   private void costruisciBordoOvest() {
     soluzione[0][0] = angoloNO;
     for(int i=1; i<soluzione.length; i++) {
@@ -41,48 +36,43 @@ public class SolverPR extends UnicastRemoteObject implements Solver {
     }
   }
   
-  public Tassello[][] risolvi(Scatola s) throws RemoteException {
-    boolean check = false;
-    scatola = s;
-    angoloNO = ((ScatolaBST) scatola).getAngoloNO();
-    righe = scatola.getRighe();
-    colonne = scatola.getColonne();
-    
-//     ********************************************
-      try{Thread.sleep(4000);} catch(InterruptedException i) {System.out.println("MERDA");}
-// 	  for(int i=0; i<9999999999; i++) {}
-//       *******************************************
-    
-    if(righe != 0 && scatola.getNumeroPezzi() != 0 && scatola.getColonne() != 0) { //controlla che i dati nel file siano presenti e consistenti
-      check = true;
-    }
-    else {
-      colonne = 0; 
-      righe=0;
-    }
-    soluzione = new Tassello[righe][colonne];
-    
-    if(check) { //costruisce la soluzione se e solo se i dati sono presenti e consistenti
-      costruisciBordoOvest();
-      
-      Counter c = new Counter(0);
-      
-      for(int i=0; i<soluzione.length; i++) {
-	new Thread(new ThreadSolver(i, c)).start();
+  public Tassello[][] risolvi(Scatola s) {
+      boolean check = false;
+      scatola = s;
+      angoloNO = ((ScatolaBST) scatola).getAngoloNO();
+      righe = scatola.getRighe();
+      colonne = scatola.getColonne();
+     
+      if(righe != 0 && scatola.getNumeroPezzi() != 0 && scatola.getColonne() != 0) { //controlla che i dati nel file siano presenti e consistenti
+	check = true;
       }
+      else {
+	colonne = 0; 
+	righe=0;
+      }
+      soluzione = new Tassello[righe][colonne];
       
-      
-      synchronized(c) {
-	while(c.getCount() != 0) {
-	  try {
-	    c.wait();
-	  }
-	  catch (InterruptedException e) {
-	    System.err.println(e);
+      if(check) { //costruisce la soluzione se e solo se i dati sono presenti e consistenti
+	costruisciBordoOvest();
+	
+	Counter c = new Counter(0);
+	
+	for(int i=0; i<soluzione.length; i++) {
+	  new Thread(new ThreadSolver(i, c)).start();
+	}
+	
+	
+	synchronized(c) {
+	  while(c.getCount() != 0) {
+	    try {
+	      c.wait();
+	    }
+	    catch (InterruptedException e) {
+	      System.err.println(e);
+	    }
 	  }
 	}
       }
-    }
-    return soluzione;
+      return soluzione;
   }
 }
