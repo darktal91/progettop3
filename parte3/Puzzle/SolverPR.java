@@ -41,12 +41,17 @@ public class SolverPR extends UnicastRemoteObject implements Solver {
     }
   }
   
-  public void risolvi(Scatola s) throws RemoteException {
+  public Tassello[][] risolvi(Scatola s) throws RemoteException {
     boolean check = false;
     scatola = s;
     angoloNO = ((ScatolaBST) scatola).getAngoloNO();
     righe = scatola.getRighe();
     colonne = scatola.getColonne();
+    
+//     ********************************************
+      try{Thread.sleep(4000);} catch(InterruptedException i) {System.out.println("MERDA");}
+// 	  for(int i=0; i<9999999999; i++) {}
+//       *******************************************
     
     if(righe != 0 && scatola.getNumeroPezzi() != 0 && scatola.getColonne() != 0) { //controlla che i dati nel file siano presenti e consistenti
       check = true;
@@ -78,5 +83,6 @@ public class SolverPR extends UnicastRemoteObject implements Solver {
 	}
       }
     }
+    return soluzione;
   }
 }

@@ -1,5 +1,7 @@
 package Puzzle;
 
+import java.io.Serializable;
+
 class NodoTassello implements Serializable {
   private Tassello data;
   private NodoTassello left, right;

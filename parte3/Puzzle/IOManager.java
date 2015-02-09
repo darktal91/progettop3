@@ -14,12 +14,12 @@ public class IOManager {
   
   public Scatola leggi(String input) throws InputInconsistente {
     Path inputPath = Paths.get(input);
-   
+    ScatolaBST scatola = new ScatolaBST();
+    
     try (BufferedReader reader = Files.newBufferedReader(inputPath, charset)) {
       String line = null;
       String[] temp = null;
       Tassello_str t = null;
-      ScatolaBST scatola = new ScatolaBST();
       
       while ((line = reader.readLine()) != null) {
 	temp = line.split("\t");
@@ -65,7 +65,7 @@ public class IOManager {
       
       builder.append("\n");
       
-      builder.append(righe + " " + colonne);
+      builder.append(soluzione.length + " " + soluzione[0].length);
       
       writer.write(builder.toString());
     }

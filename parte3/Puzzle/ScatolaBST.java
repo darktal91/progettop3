@@ -10,8 +10,7 @@ public class ScatolaBST implements Scatola {
     root = null;
     pezzi = 0;
     righe = 0;
-
-    angoloNO = null
+    angoloNO = null;
   }
   
   //funzione privata di utilità che implementa l'inserimento di un nodo in modo ricorsivo
